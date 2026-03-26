@@ -72,7 +72,7 @@ def get_device() -> torch.device:
 
 def to_device(data, device: torch.device, _depth: int = 0) -> any:
     """
-    将数据移动到指定设备（修复递归深度版）
+    将数据移动到指定设备
     
     参数:
         data: 数据（tensor、list、dict或tuple）
@@ -92,4 +92,7 @@ def to_device(data, device: torch.device, _depth: int = 0) -> any:
         return {k: to_device(v, device, _depth + 1) for k, v in data.items()}
     elif isinstance(data, (list, tuple)):
         return type(data)(to_device(x, device, _depth + 1) for x in data)
+    elif hasattr(data, 'to') and callable(data.to):
+        # 支持 nn.Module 和其他有 .to() 方法的对象
+        return data.to(device)
     return data

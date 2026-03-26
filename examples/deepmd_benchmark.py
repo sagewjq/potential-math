@@ -104,9 +104,7 @@ class MockDeepMDTrainer:
             
             if epoch % 10 == 0:
                 print(f"[{self.optimizer_type}] Epoch {epoch}: loss={avg_loss:.6f}")
-                if terrain_info:
-                    print(f"  Terrain: {terrain_info}")
-        
+
         elapsed = time.time() - start_time
         return losses, elapsed
 

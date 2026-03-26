@@ -2,14 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='potential-math',
-    version='0.2.0',
-    author='王江祁',
-    author_email='jq.wang@126.com',
+    version='0.4.0',
+    author='Your Name',
+    author_email='your.email@example.com',
     description='势场数学库 - 基于频率调制统一理论的地形感知优化器',
     long_description=open('README.md', encoding='utf-8').read() if __import__('os').path.exists('README.md') else '',
     long_description_content_type='text/markdown',
-    url='https://gitee.com/sageapollo/potential-math',
-    license='MIT',
+    url='https://github.com/yourname/potential-math',
     packages=find_packages(),
     install_requires=[
         'torch>=1.9.0',

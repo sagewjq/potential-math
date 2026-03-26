@@ -7,7 +7,6 @@
 
 import torch
 import torch.nn as nn
-import matplotlib.pyplot as plt
 import sys
 import os
 
@@ -15,6 +14,13 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from potential_math import PotentialOptimizer, LossLandscape, set_seed
+
+# 配置matplotlib后端（解决无显示器环境问题）
+import matplotlib
+import os
+if 'DISPLAY' not in os.environ or os.environ.get('MPLBACKEND') == 'agg':
+    matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 
 def test_on_simple_problem():
@@ -64,8 +70,9 @@ def test_on_simple_problem():
     plt.title('Optimizer Comparison on Simple Regression')
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig('optimizer_comparison.png')
-    plt.show()
+    plt.savefig('optimizer_comparison.png', dpi=150, bbox_inches='tight')
+    print("Figure saved to optimizer_comparison.png")
+    plt.close()
     
     return results
 
@@ -138,7 +145,7 @@ def test_potential_superpose():
 
 if __name__ == '__main__':
     print("=" * 50)
-    print("势场数学库 - 完整修复版测试")
+    print("势场数学库 - 修复版测试 v0.3.1")
     print("=" * 50)
     
     # 测试1：优化器对比
